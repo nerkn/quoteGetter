@@ -13,4 +13,8 @@ class Requests extends Model
     {
         return $this->hasMany(RequestLine::class);
     }
+    public function Offers(){
+      return $this->hasMany(Offers::class);
+
+    }
 }

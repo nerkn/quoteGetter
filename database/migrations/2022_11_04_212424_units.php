@@ -74,9 +74,9 @@ return new class extends Migration
         $table->text('specialNotes'); 
         $table->text('internalNotes');
         $table->dateTime('deadLine');
-        $table->dateTime('resultExposure');
         $table->float('price');                 //offer total price
         $table->timestamps();
+        $table->foreignId('requests_id' )->constrained();
         $table->foreignId('companies_id')->constrained();
       });   
       Schema::create('offerLine', function (Blueprint $table) {

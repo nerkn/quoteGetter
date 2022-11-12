@@ -1,8 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
+use App\Models\Offers;
 
 class Offers extends Controller
 {
@@ -13,7 +13,11 @@ class Offers extends Controller
      */
     public function index()
     {
-        //
+        
+      $paginationItemCount = 15;
+      $Offers = Offers::latest()->paginate($paginationItemCount);
+      return view('Offers/index', ['Offers'=>$Offers])
+                  ->with('i', (request()->input('page', 1)-1)*$paginationItemCount);
     }
 
     /**

@@ -3,7 +3,7 @@
     @section('content')
       @isset($requests) 
         <div class=''>
-          @each('Parts/request', $requests, 'request').with()
+          @each('Parts/request', $requests, 'request')
         </div>
       @endisset
     @endsection

@@ -11,7 +11,8 @@
   <div class='status'>{{$request->status}}</div>
   <div class='actions'>
       <a href='/requests/{{$request->id}}'>Properties</a>
-      <a href='/requests/OfferListing'>Offers</a>
+      <a href='/requests/{{$request->id}}/Offers'> {{$request->Offers()->count()}} Offers</a>
+      <a href='/requests/{{$request->id}}/Invite'> Invite </a>
   </div>
 </div>
 

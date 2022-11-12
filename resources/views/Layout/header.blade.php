@@ -1,7 +1,7 @@
-<div class='header flex'>
-  <div>Orderer  </div>
+<div class='header flex max-w-7xl '>
+  <div><a href='/'>Orderer</a></div>
   <div>Welcome  </div>
-  <div>
+  <div class='text-right'>
     <a href='/profile'>Profile</a>
     <a href='/profile/preferences'>Preferences</a>
 

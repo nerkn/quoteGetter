@@ -8,7 +8,7 @@
 
         <!-- Fonts -->
         <link href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
-        <link href="/css/app.css" rel="stylesheet" />
+        @vite(['resources/css/app.css', 'resources/js/app.js'])
 
         <style>
             body {
@@ -17,10 +17,10 @@
         </style>
     </head>
     <body>
-<div class='flexcolumn'>
+<div class='root flexcolumn'>
   @include('Layout/header')
   @include('Layout/menu')
-  <div class='max-w-7xl'>
+  <div class='max-w-7xl min-h-screen'>
     @section('content') 
       @isset($requests)
         @foreach ($requests as $r)
