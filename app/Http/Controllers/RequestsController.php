@@ -21,10 +21,8 @@ class RequestsController extends Controller
      */
     public function index()
     {
-      file_put_contents('/var/www/html/storage/logs/laravel.log', 'RequestsController/index', FILE_APPEND);
-        $paginationItemCount = 5;
+        $paginationItemCount = 15;
         $requests = Requests::latest()->paginate($paginationItemCount);
-
         return view('Requests/index', ['requests'=>$requests])
                     ->with('i', (request()->input('page', 1)-1)*$paginationItemCount);
     }
@@ -79,7 +77,18 @@ class RequestsController extends Controller
         }
         return $this->show($requestObj->id);
     }
+    /**
+     * Display the offers binded to request.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function Offers(int $id){
 
+      $request = Requests::find($id);
+
+      return view('Requests/Offers', ['request'=>$request]);
+    }
     /**
      * Display the specified resource.
      *
