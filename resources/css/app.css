@@ -1,79 +1,84 @@
 /*      Normalize     */ 
 
+@layer general, parts, pages, userLogin;
+
+
+
+
+/*      General Styles     */
+@layer general{
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+  a:hover,a:active {color:#0e2f6d;  text-decoration: underline;}
+  .grid{
+    display: grid;
+  }
+  .grid-cols-3{  display: grid;  grid-template-columns: repeat(3, 1fr);}
+  .grid-cols-4{  grid-template-columns: repeat(4, 1fr);}
+  .grid-cols-7{  grid-template-columns: repeat(7, 1fr);}
+
+  .flex{  display: flex; }
+  .flexColumn, .flexcolumn{ display: flex; flex-direction: column;}
+  .flex>* , .flexcolumn>*, .flexColumn>*{ flex-grow: 1;}
 
 
 
+  input{border:1px solid #e2e8f0; 
+        margin:         0 2px; 
+        padding-left:   5px;
+        padding-right:  5px; 
+        border-radius:  3px;}
 
- 
-/*      General Styles     
-h1{font-size: xxx-large;}
-h2{font-size:  xx-large;}
-h3{font-size:   x-large;}
-*/
-a:hover,a:active {color:#0e2f6d;  text-decoration: underline;}
-.grid{
-  display: grid;
+  .border-t1{
+    border: 1px solid;
+    border-radius: 5px;
+    border-color: cornsilk;}
+
+  .border-slate-200 { 
+    border-color: rgb(226 232 240);
+  }
+  .border-b {
+    border-bottom-width: 1px;
+  }
+  .text-center	{text-align: center;}
+  .text-right	  {text-align: right;}
+  .max-w-xs, .max-w-7xl{width: 100%;  margin-left: auto; margin-right: auto}
+  .max-w-xs     {	max-width: 20rem;}
+  .max-w-7xl	  { max-width: 80rem;}
+
+  .hidden{display:none}
+
+  .py-2 {	padding-top: 0.5rem; 
+          padding-bottom: 0.5rem; }
+
+
+
+  .atletOdd>*:nth-child(2n),
+  .atlet>*:nth-child(6n+3),
+  .atlet>*:nth-child(6n+1),
+  .atlet>*:nth-child(6n+2){background-color:rgb(240, 250, 255) ;}
+
 }
-.grid-cols-3{  display: grid;  grid-template-columns: repeat(3, 1fr);}
-.grid-cols-4{  grid-template-columns: repeat(4, 1fr);}
-.grid-cols-7{  grid-template-columns: repeat(7, 1fr);}
+@layer userLogin{
 
-.flex{  display: flex; }
-.flexColumn, .flexcolumn{ display: flex; flex-direction: column;}
-.flex>* , .flexcolumn>*, .flexColumn>*{ flex-grow: 1;}
+  .userStatus.login{display:none}
+  .userStatus.logout{display:none}
+  .root[data-userstatus="admin"]  .login,
+  .root[data-userstatus="User"]   .login,
+  .root[data-userstatus="user"]  .login,
+  .root[data-userstatus=""]       .logout,
+  .root[data-userstatus="guest"]  .logout
+  {
+    display:inherit
+  }
 
-
-
-input{border:1px solid #e2e8f0; 
-      margin:         0 2px; 
-      padding-left:   5px;
-      padding-right:  5px; 
-      border-radius:  3px;}
-
-.border-t1{
-  border: 1px solid;
-  border-radius: 5px;
-  border-color: cornsilk;}
-
-.border-slate-200 { 
-  border-color: rgb(226 232 240);
 }
-.border-b {
-  border-bottom-width: 1px;
-}
-.text-center	{text-align: center;}
-.text-right	  {text-align: right;}
-.max-w-xs, .max-w-7xl{width: 100%;  margin-left: auto; margin-right: auto}
-.max-w-xs     {	max-width: 20rem;}
-.max-w-7xl	  { max-width: 80rem;}
 
 
-
-.py-2 {	padding-top: 0.5rem; 
-        padding-bottom: 0.5rem; }
-
-
-
-.atletOdd>*:nth-child(2n),
-.atlet>*:nth-child(6n+3),
-.atlet>*:nth-child(6n+1),
-.atlet>*:nth-child(6n+2){background-color:rgb(240, 250, 255) ;}
-
-.userStatus.login{display:none}
-.userStatus.logout{display:none}
-.root[data-userStatus="admin"]  .login,
-.root[data-userStatus="user"]   .login,
-.root[data-userStatus="login"]  .login,
-.root[data-userStatus=""]       .logout,
-.root[data-userStatus="guest"]  .logout
-{
-  display:inherit
-}
- 
 /*      Parts     */
+@layer parts{
 .request { display: block;}
 .request h4{width: 100%; }
 .request  .internalName{  }
@@ -81,11 +86,33 @@ input{border:1px solid #e2e8f0;
 .request  .status{}
 .request .actions{display: flex;}
 .request .actions a{}
+
+.showChildWhenOver:hover .hidden{
+  display: inherit;
+}
+.header .loginForm{
+  position: absolute;
+  left: -7em;
+  padding: 2em;
+  row-gap: 1em;
+}
+.header .loginForm>*{}
+
+
+
 .header{margin: 1ex auto;}
 .menu>div{
   display: flex;
   flex-direction: row-reverse;
   column-gap: 2em;}
+.notifZone{position:absolute; right:1em;top:1em}
+.notifZone>div{position: relative; border:2px solid #df451e; padding: 10px;}
+
+}
+
+
+@layer pages{
+
 
 /*       Pages     */ 
 .request-create-form{
@@ -121,4 +148,6 @@ input{border:1px solid #e2e8f0;
 .request-show-dates-grid { 
 display: grid;
 grid-template-columns: 1fr 1fr 1fr;
+}
+
 }

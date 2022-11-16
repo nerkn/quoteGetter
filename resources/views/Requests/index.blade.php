@@ -1,6 +1,6 @@
 @extends('index')
 
-    @section('content')
+    @section('content') 
       @isset($requests) 
         <div class=''>
           @each('Parts/request', $requests, 'request')

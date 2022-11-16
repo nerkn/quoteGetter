@@ -2,21 +2,26 @@
   <div><a href='/'>Orderer</a></div>
   <div>Welcome  </div>
   <div class='text-right'>
-    <a href='/profile'>Profile</a>
-    <a href='/profile/preferences'>Preferences</a>
-
-    @if (Route::has('login'))
-    <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
-        @auth
-            <a href="{{ url('/home') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Home</a>
-        @else
-            <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
-
-            @if (Route::has('register'))
-                <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a>
-            @endif
-        @endauth
-    </div>
-    @endif
+    <div class="relative  showChildWhenOver  inline ">
+          <a href='/profile'>Profile</a>
+          <div class="hidden">
+          <form class='userStatus logout loginForm flexColumn bg-white rounded-lg border border-gray-100 shadow-md text-left top-4'
+                onsubmit="userStore.getState().login(event,this);return false;"
+                action='/login' >
+                @csrf
+            <label><span>Username : </span>              <input name='email'    type='email' /> </label>
+            <label><span>Password : </span>              <input name='password' type='password' /> </label>
+            <div> <input type='submit' name='Login' value='Register' />
+                  <input type='submit' name='Login' value="Login"    /></div>
+          </form>
+          </div>
+          <div class="hidden">
+            <div class="userStatus login flexColumn bg-white rounded-lg border border-gray-100 shadow-md text-left top-4">
+                  <a href="/logout" onclick="userStore.getState().logout();event.preventDefault();">Logout</a>
+            </div>
+          </div>
+    </div>  
+    <a href='/profile/preferences'>Preferences</a>    
   </div>
 </div>
+

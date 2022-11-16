@@ -17,7 +17,7 @@
         </style>
     </head>
     <body>
-<div class='root flexcolumn'>
+<div class='root flexcolumn' data-userstatus="guest">
   @include('Layout/header')
   @include('Layout/menu')
   <div class='max-w-7xl min-h-screen'>
@@ -36,6 +36,7 @@
     @show 
   </div>
   @include('Layout/footer')
+<div class='notifZone'></div>
 </div>
 
 

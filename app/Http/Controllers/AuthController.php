@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Auth\LoginRequest;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use App\Models\Offers;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
-class Auth extends Controller
+class AuthController extends Controller
 {
     /**
      * Login as user
@@ -13,11 +15,20 @@ class Auth extends Controller
      * @param  \App\Http\Requests\Auth\LoginRequest  $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function Login($request)
+    public function Login(LoginRequest $request)
     {        
-      $request->authenticate();
+      if(!$request->authenticate()){
+        return  response()->json([
+                    'status' => false,
+                    'message' => 'Validation Error' 
+                    ], 200);
+      }
       $request->session()->regenerate();
-      return redirect()->intended(RouteServiceProvider::HOME);
+      
+      return response()->json([
+        'status' => true,
+        'result' => Auth::user()
+        ], 200);
     }
 
     /**

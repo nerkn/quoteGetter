@@ -23,7 +23,7 @@ class RequestsController extends Controller
     {
         $paginationItemCount = 15;
         $requests = Requests::latest()->paginate($paginationItemCount);
-        return view('Requests/index', ['requests'=>$requests])
+        return view('Requests/index', ['requests'=>$requests, 'user'=>Auth::user])
                     ->with('i', (request()->input('page', 1)-1)*$paginationItemCount);
     }
 
